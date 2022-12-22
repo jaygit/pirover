@@ -7,6 +7,7 @@ import time
 import logging
 import logging.config
 import yaml
+import VL53L0X
 
 with open('logging.conf.yaml', 'r') as f:
     config = yaml.safe_load(f.read())
@@ -224,6 +225,8 @@ class Rover(RRB3):
     STEP = 10
     IR_PIN_LEFT = 26 
     IR_PIN_RIGHT = 19
+    TOF_I2C_ADDRESS = 0x29
+    
 
     def __init__(self, battery_voltage=9.0, motor_voltage=6.0):
         logger.info("Rover:__init__")
@@ -231,8 +234,15 @@ class Rover(RRB3):
         self.pan_current = 0
         self.tilt_current = 0
         self.range_current =0
+        self.tof_timing = 20000
         self.distance_readings = [0, 0, 0, 0, 0]
+        self.tof_distance_reading = [0, 0, 0, 0, 0]
         super().__init__(battery_voltage, motor_voltage)
+
+        # time of flight sensor
+        self.tof = VL53L0X.VL53L0X(i2c_bus=1, i2c_address=TOF_I2C_ADDRESS)
+        tof.open() # initialise it.
+
         GPIO.setup(self.RANGE_PWM_PIN, GPIO.OUT)
         self.range_pwm = GPIO.PWM(self.RANGE_PWM_PIN, 50)
         self.range_pwm.start(0)
@@ -305,6 +315,7 @@ class Rover(RRB3):
         logger.info("Rover:servo_up")
         angle = self.tilt_current - self.STEP
         self.set_tilt_angle(angle)
+
     def servo_down(self):
         logger.info("Rover:servo_down")
         angle = self.tilt_current + self.STEP
@@ -338,16 +349,31 @@ class Rover(RRB3):
         self.range_pwm.ChangeDutyCycle(0)
 
 
+    def tof_get_distance(self):
+        """Use the time of flight to calculate
+           distance
+        Param: None
+        return: int-> the distance from obstacle in cms
+        """
+	logger.info("Rover:tof_get_distance")
+	self.tof.start_ranging(VL53L0X.Vl53l0xAccuracyMode.BETTER)
+        distance = self.tof.get_distance()
+        logger.info(f"Distance: {distance/10}")
+	self.tof.stop_ranging()
+	return (distance/10)
+
     def get_direction(self):
         logger.info("Rover:get_direction")
         self.set_range_angle(30)
         distance_right = self.get_distance()
+        tof_distance_right = self.tof_get_distance()
         self.set_range_angle(90)
         time.sleep(self.MOTOR_DELAY)
         self.set_range_angle(150)
         distance_left = self.get_distance()
+        tof_distance_left = self.tof_get_distance()
         self.set_range_angle(90)
-        if max(distance_left, distance_right) > 20 or not self.obstacle():
+        if (max(distance_left, distance_right) > 20 and max(tof_distance_left, tof_distance_right) > 20) or not self.obstacle():
             if distance_left > distance_right:
                 return("left")
             else:
@@ -387,4 +413,5 @@ class Rover(RRB3):
         self.range_pwm.stop()
         self.pan_pwm.stop()
         self.tilt_pwm.stop()
+	self.tof.close()
         GPIO.cleanup()
