@@ -15,7 +15,7 @@ bot.set_servo_mid()
 
 try:
 	while True:
-		distance = bot.get_distance()
+		distance = bot.tof_get_distance()
 		logger.info("distance: " + str(distance))
 		bot.forward(speed=0.6)
 		if distance < 20:

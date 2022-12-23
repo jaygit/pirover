@@ -240,8 +240,9 @@ class Rover(RRB3):
         super().__init__(battery_voltage, motor_voltage)
 
         # time of flight sensor
-        self.tof = VL53L0X.VL53L0X(i2c_bus=1, i2c_address=TOF_I2C_ADDRESS)
-        tof.open() # initialise it.
+        self.tof = VL53L0X.VL53L0X(i2c_bus=1, i2c_address=0x29)
+        self.tof.open() # initialise it.
+        self.tof.start_ranging(VL53L0X.Vl53l0xAccuracyMode.BETTER)
 
         GPIO.setup(self.RANGE_PWM_PIN, GPIO.OUT)
         self.range_pwm = GPIO.PWM(self.RANGE_PWM_PIN, 50)
@@ -355,12 +356,11 @@ class Rover(RRB3):
         Param: None
         return: int-> the distance from obstacle in cms
         """
-	logger.info("Rover:tof_get_distance")
-	self.tof.start_ranging(VL53L0X.Vl53l0xAccuracyMode.BETTER)
+        logger.info("Rover:tof_get_distance")
         distance = self.tof.get_distance()
-        logger.info(f"Distance: {distance/10}")
-	self.tof.stop_ranging()
-	return (distance/10)
+        time.sleep(self.tof_timing/100000.00)
+        logger.debug(f"TOF Distance: {distance/10}")
+        return (distance/10)
 
     def get_direction(self):
         logger.info("Rover:get_direction")
@@ -413,5 +413,6 @@ class Rover(RRB3):
         self.range_pwm.stop()
         self.pan_pwm.stop()
         self.tilt_pwm.stop()
-	self.tof.close()
+        self.tof.stop_ranging()
+        self.tof.close()
         GPIO.cleanup()
