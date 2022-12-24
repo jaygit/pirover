@@ -365,16 +365,17 @@ class Rover(RRB3):
     def get_direction(self):
         logger.info("Rover:get_direction")
         self.set_range_angle(30)
-        distance_right = self.get_distance()
+        # distance_right = self.get_distance()
         tof_distance_right = self.tof_get_distance()
         self.set_range_angle(90)
         time.sleep(self.MOTOR_DELAY)
         self.set_range_angle(150)
-        distance_left = self.get_distance()
+        # distance_left = self.get_distance()
         tof_distance_left = self.tof_get_distance()
         self.set_range_angle(90)
-        if (max(distance_left, distance_right) > 20 and max(tof_distance_left, tof_distance_right) > 20) or not self.obstacle():
-            if distance_left > distance_right:
+        # if (max(distance_left, distance_right) > 20 and max(tof_distance_left, tof_distance_right) > 20) or not self.obstacle():
+        if (max(tof_distance_left, tof_distance_right) > 20) or not self.obstacle():
+            if tof_distance_left > tof_distance_right:
                 return("left")
             else:
                 return("right")
@@ -388,8 +389,12 @@ class Rover(RRB3):
             self.left(time, speed)
         elif direction == "right":    
             self.right(time, speed)
+            check_direction = self.get_direction()
         elif direction == "reverse":
             self.reverse(time, speed)
+            self.turn()
+        distance = self.get_distance()
+        if distance < 20:
             self.turn()
         self.stop()
 

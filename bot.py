@@ -15,17 +15,22 @@ bot.set_servo_mid()
 
 try:
 	while True:
-		distance = bot.tof_get_distance()
-		logger.info("distance: " + str(distance))
 		bot.forward(speed=0.6)
+		distance = bot.tof_get_distance()
+		logger.debug("distance: " + str(distance))
 		if distance < 20:
 			logger.info("distance is less than 20")
 			bot.stop()
 			bot.turn()
-		if bot.check_stuck(distance) or bot.obstacle():
-			logger.info("stuck or hit obstacle")
+		if bot.check_stuck(distance):
+			logger.info("stuck")
 			bot.reverse(1, 0.5)
 			bot.turn()
+ 
+		#if bot.obstacle():
+		#	logger.info("stuck or hit obstacle")
+		#	bot.reverse(1, 0.5)
+		#	bot.turn()
 		sleep(0.2)
 finally:
 	logger.info("cleaning up")
