@@ -27,10 +27,10 @@ try:
 			bot.reverse(1, 0.5)
 			bot.turn()
  
-		#if bot.obstacle():
-		#	logger.info("stuck or hit obstacle")
-		#	bot.reverse(1, 0.5)
-		#	bot.turn()
+		if bot.obstacle():
+			logger.info("stuck or hit obstacle")
+			bot.reverse(1, 0.5)
+			bot.turn()
 		sleep(0.2)
 finally:
 	logger.info("cleaning up")
