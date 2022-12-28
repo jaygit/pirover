@@ -302,22 +302,22 @@ class Rover(RRB3):
             angle = self.TILT_MIN
         return(angle)
 
-    def servo_left(self):
-        logger.info("Rover:servo_left")
+    def pan_left(self):
+        logger.info("Rover:pan_left")
         angle = self.pan_current + self.STEP
         self.set_pan_angle(angle)
 
-    def servo_right(self):
-        logger.info("Rover:servo_right")
+    def pan_right(self):
+        logger.info("Rover:pan_right")
         angle = self.pan_current - self.STEP
         self.set_pan_angle(angle)
 
-    def servo_up(self):
-        logger.info("Rover:servo_up")
+    def tilt_up(self):
+        logger.info("Rover:tilt_up")
         angle = self.tilt_current - self.STEP
         self.set_tilt_angle(angle)
 
-    def servo_down(self):
+    def tilt_down(self):
         logger.info("Rover:servo_down")
         angle = self.tilt_current + self.STEP
         self.set_tilt_angle(angle)
@@ -406,6 +406,18 @@ class Rover(RRB3):
             return False
         return True
 
+    def check_proximity_left(self):
+        """ Check the left proximity sensor """
+        if GPIO.input(self.IR_PIN_LEFT) == False:
+            return True
+        return False
+ 
+    def check_proximity_right(self):
+        """ Check the right proximity sensor """
+        if GPIO.input(self.IR_PIN_RIGHT) == False:
+            return True
+        return False
+ 
     def obstacle(self):
         logger.info("Rover:obstacle")
         if GPIO.input(self.IR_PIN_LEFT) == False  or GPIO.input(self.IR_PIN_RIGHT) == False:

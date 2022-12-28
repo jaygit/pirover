@@ -1,0 +1,11 @@
+[Unit]
+Description=Pirover Camera Stream
+
+[Service]
+Type=simple
+User=pi
+Group=pi
+ExecStart=/home/pi/pirover/camera.py
+
+[Install]
+WantedBy=default.target
