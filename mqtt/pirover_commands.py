@@ -24,6 +24,9 @@ CMD_TURN_ON_PARKING_LIGHTS = "TURN_ON_PARKING_LIGHTS"
 CMD_TURN_OFF_PARKING_LIGHTS = "TURN_OFF_PARKING_LIGHTS"
 # Accelerate the vehicle, that is, press the gas pedal
 CMD_ACCELERATE = "ACCELERATE"
+# Go in the opposite direction 
+CMD_FORWARD = "FORWARD"
+CMD_REVERSE = "REVERSE"
 # Brake the vehicle, that is, press the brake pedal
 CMD_BRAKE = "BRAKE"
 # Make the vehicle rotate to the right. We must specify the degrees 

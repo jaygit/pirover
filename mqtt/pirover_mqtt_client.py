@@ -52,17 +52,27 @@ class Vehicle:
     def accelerate(self):
         self.print_action_with_name_prefix("Accelerating")
 
+    def forward(self):
+        self.print_action_with_name_prefix("moving forward")
+        self.pirover.forward(speed=0.4)
+
+    def reverse(self):
+        self.print_action_with_name_prefix("moving backwards")
+        self.pirover.reverse(speed=0.3)
+
     def brake(self):
         self.print_action_with_name_prefix("Braking")
         self.pirover.stop()
 
     def turn_right(self):
         self.print_action_with_name_prefix("Turning right " )
-        self.pirover.right()
+        # needed to reverse the left and right
+        self.pirover.left(0.3, 0.3)
 
     def turn_left(self):
         self.print_action_with_name_prefix("Turning left " )
-        self.pirover.left()
+        # needed to reverse the left and right
+        self.pirover.right(0.3, 0.3)
 
     def rotate_right(self, degrees):
         self.print_action_with_name_prefix("Rotating right {} degrees".format(degrees))
@@ -171,6 +181,8 @@ class VehicleCommandProcessor:
                         CMD_TURN_OFF_PARKING_LIGHTS: lambda: 
                         vehicle.turn_off_parking_lights(),
                         CMD_ACCELERATE: lambda: vehicle.accelerate(),
+                        CMD_FORWARD: lambda: vehicle.forward(),
+                        CMD_REVERSE: lambda: vehicle.reverse(),
                         CMD_BRAKE: lambda: vehicle.brake(),
                         CMD_ROTATE_RIGHT: lambda: 
                         vehicle.rotate_right(degrees),
