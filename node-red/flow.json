@@ -1,0 +1,515 @@
+[
+  {
+    "id": "e7f76f7edeea9578",
+    "type": "tab",
+    "label": "Flow 3",
+    "disabled": false,
+    "info": "",
+    "env": []
+  },
+  {
+    "id": "d0e22e13218b4d02",
+    "type": "ui_button",
+    "z": "e7f76f7edeea9578",
+    "name": "",
+    "group": "456ae826543353aa",
+    "order": 6,
+    "width": 1,
+    "height": 1,
+    "passthru": false,
+    "label": "",
+    "tooltip": "left",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "fa-angle-left fa-3x",
+    "payload": "{\"CMD\":\"PAN_LEFT\"}",
+    "payloadType": "json",
+    "topic": "vehicles/pirover01/commands",
+    "topicType": "msg",
+    "x": 230,
+    "y": 180,
+    "wires": [
+      [
+        "bbd3dc9d0f666c94"
+      ]
+    ]
+  },
+  {
+    "id": "d50f98bd9c8ded78",
+    "type": "ui_button",
+    "z": "e7f76f7edeea9578",
+    "name": "",
+    "group": "456ae826543353aa",
+    "order": 8,
+    "width": 1,
+    "height": 1,
+    "passthru": false,
+    "label": "",
+    "tooltip": "right",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "fa-angle-right fa-3x",
+    "payload": "{\"CMD\":\"PAN_RIGHT\"}",
+    "payloadType": "json",
+    "topic": "vehicles/pirover01/commands",
+    "topicType": "msg",
+    "x": 290,
+    "y": 260,
+    "wires": [
+      [
+        "bbd3dc9d0f666c94"
+      ]
+    ]
+  },
+  {
+    "id": "bbd3dc9d0f666c94",
+    "type": "mqtt out",
+    "z": "e7f76f7edeea9578",
+    "name": "",
+    "topic": "vehicles/pirover01/commands",
+    "qos": "",
+    "retain": "",
+    "respTopic": "",
+    "contentType": "",
+    "userProps": "",
+    "correl": "",
+    "expiry": "",
+    "broker": "8e4e89ea.83e47",
+    "x": 530,
+    "y": 180,
+    "wires": []
+  },
+  {
+    "id": "f5185ef1da5a8087",
+    "type": "ui_button",
+    "z": "e7f76f7edeea9578",
+    "name": "",
+    "group": "456ae826543353aa",
+    "order": 3,
+    "width": 1,
+    "height": 1,
+    "passthru": false,
+    "label": "",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "fa-angle-up fa-3x",
+    "payload": "{\"CMD\":\"TILT_UP\"}",
+    "payloadType": "json",
+    "topic": "vehicles/pirover01/commands",
+    "topicType": "msg",
+    "x": 490,
+    "y": 440,
+    "wires": [
+      [
+        "bbd3dc9d0f666c94"
+      ]
+    ]
+  },
+  {
+    "id": "15c3b9f66d1fdb1f",
+    "type": "ui_button",
+    "z": "e7f76f7edeea9578",
+    "name": "",
+    "group": "456ae826543353aa",
+    "order": 11,
+    "width": 1,
+    "height": 1,
+    "passthru": false,
+    "label": "",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "fa-angle-down fa-3x",
+    "payload": "{\"CMD\":\"TILT_DOWN\"}",
+    "payloadType": "json",
+    "topic": "vehicles/pirover01/commands",
+    "topicType": "msg",
+    "x": 590,
+    "y": 500,
+    "wires": [
+      [
+        "bbd3dc9d0f666c94"
+      ]
+    ]
+  },
+  {
+    "id": "b85be1a0b5045cd2",
+    "type": "ui_template",
+    "z": "e7f76f7edeea9578",
+    "group": "456ae826543353aa",
+    "name": "Stream",
+    "order": 13,
+    "width": 5,
+    "height": 5,
+    "format": "<iframe scrolling=no marginwidth=0 frameborder=0 height=439 width=553 src=\"http://<streamserver>/stream.mjpg\"></iframe>",
+    "storeOutMessages": true,
+    "fwdInMessages": true,
+    "resendOnRefresh": true,
+    "templateScope": "local",
+    "className": "",
+    "x": 360,
+    "y": 540,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "ca2afd9eec4b8d53",
+    "type": "ui_button",
+    "z": "e7f76f7edeea9578",
+    "name": "",
+    "group": "456ae826543353aa",
+    "order": 18,
+    "width": 1,
+    "height": 1,
+    "passthru": false,
+    "label": "",
+    "tooltip": "left",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "fa-chevron-circle-left fa-3x",
+    "payload": "{\"CMD\":\"TURN_LEFT\"}",
+    "payloadType": "json",
+    "topic": "vehicles/pirover01/commands",
+    "topicType": "msg",
+    "x": 170,
+    "y": 660,
+    "wires": [
+      [
+        "cddfb71a681c3da4"
+      ]
+    ]
+  },
+  {
+    "id": "7652dc13799436f5",
+    "type": "ui_button",
+    "z": "e7f76f7edeea9578",
+    "name": "",
+    "group": "456ae826543353aa",
+    "order": 20,
+    "width": 1,
+    "height": 1,
+    "passthru": false,
+    "label": "",
+    "tooltip": "right",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "fa-chevron-circle-right fa-3x",
+    "payload": "{\"CMD\":\"TURN_RIGHT\"}",
+    "payloadType": "json",
+    "topic": "vehicles/pirover01/commands",
+    "topicType": "msg",
+    "x": 230,
+    "y": 740,
+    "wires": [
+      [
+        "cddfb71a681c3da4"
+      ]
+    ]
+  },
+  {
+    "id": "cddfb71a681c3da4",
+    "type": "mqtt out",
+    "z": "e7f76f7edeea9578",
+    "name": "",
+    "topic": "vehicles/pirover01/commands",
+    "qos": "",
+    "retain": "",
+    "respTopic": "",
+    "contentType": "",
+    "userProps": "",
+    "correl": "",
+    "expiry": "",
+    "broker": "8e4e89ea.83e47",
+    "x": 470,
+    "y": 660,
+    "wires": []
+  },
+  {
+    "id": "462ef075689cd7c2",
+    "type": "ui_button",
+    "z": "e7f76f7edeea9578",
+    "name": "",
+    "group": "456ae826543353aa",
+    "order": 15,
+    "width": 1,
+    "height": 1,
+    "passthru": false,
+    "label": "",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "fa-chevron-circle-up fa-3x",
+    "payload": "{\"CMD\":\"FORWARD\"}",
+    "payloadType": "json",
+    "topic": "vehicles/pirover01/commands",
+    "topicType": "msg",
+    "x": 430,
+    "y": 920,
+    "wires": [
+      [
+        "cddfb71a681c3da4"
+      ]
+    ]
+  },
+  {
+    "id": "8de94bfbfdc97f9f",
+    "type": "ui_button",
+    "z": "e7f76f7edeea9578",
+    "name": "",
+    "group": "456ae826543353aa",
+    "order": 23,
+    "width": 1,
+    "height": 1,
+    "passthru": false,
+    "label": "",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "fa-chevron-circle-down fa-3x",
+    "payload": "{\"CMD\":\"REVERSE\"}",
+    "payloadType": "json",
+    "topic": "vehicles/pirover01/commands",
+    "topicType": "msg",
+    "x": 530,
+    "y": 980,
+    "wires": [
+      [
+        "cddfb71a681c3da4"
+      ]
+    ]
+  },
+  {
+    "id": "08b4d3329d566d92",
+    "type": "ui_button",
+    "z": "e7f76f7edeea9578",
+    "name": "",
+    "group": "456ae826543353aa",
+    "order": 19,
+    "width": 1,
+    "height": 1,
+    "passthru": false,
+    "label": "",
+    "tooltip": "right",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "fa-stop fa-3x",
+    "payload": "{\"CMD\":\"BRAKE\"}",
+    "payloadType": "json",
+    "topic": "vehicles/pirover01/commands",
+    "topicType": "msg",
+    "x": 255,
+    "y": 791,
+    "wires": [
+      [
+        "cddfb71a681c3da4"
+      ]
+    ]
+  },
+  {
+    "id": "2c17531d1b50dcea",
+    "type": "ui_spacer",
+    "z": "e7f76f7edeea9578",
+    "name": "spacer",
+    "group": "5597aa8154dea933",
+    "order": 3,
+    "width": 1,
+    "height": 1
+  },
+  {
+    "id": "0a99abce549d4f4b",
+    "type": "ui_spacer",
+    "z": "e7f76f7edeea9578",
+    "name": "spacer",
+    "group": "456ae826543353aa",
+    "order": 1,
+    "width": 5,
+    "height": 1
+  },
+  {
+    "id": "2d943aa6b3c1bb6f",
+    "type": "ui_spacer",
+    "z": "e7f76f7edeea9578",
+    "name": "spacer",
+    "group": "456ae826543353aa",
+    "order": 2,
+    "width": 2,
+    "height": 1
+  },
+  {
+    "id": "5e9644f6c8f7a0d0",
+    "type": "ui_spacer",
+    "z": "e7f76f7edeea9578",
+    "name": "spacer",
+    "group": "456ae826543353aa",
+    "order": 4,
+    "width": 2,
+    "height": 1
+  },
+  {
+    "id": "fb74ace14e720d77",
+    "type": "ui_spacer",
+    "z": "e7f76f7edeea9578",
+    "name": "spacer",
+    "group": "456ae826543353aa",
+    "order": 5,
+    "width": 1,
+    "height": 1
+  },
+  {
+    "id": "02e72f6b22c3d839",
+    "type": "ui_spacer",
+    "z": "e7f76f7edeea9578",
+    "name": "spacer",
+    "group": "456ae826543353aa",
+    "order": 7,
+    "width": 1,
+    "height": 1
+  },
+  {
+    "id": "014ac4639a580a65",
+    "type": "ui_spacer",
+    "z": "e7f76f7edeea9578",
+    "name": "spacer",
+    "group": "456ae826543353aa",
+    "order": 9,
+    "width": 1,
+    "height": 1
+  },
+  {
+    "id": "1c91d19801403948",
+    "type": "ui_spacer",
+    "z": "e7f76f7edeea9578",
+    "name": "spacer",
+    "group": "456ae826543353aa",
+    "order": 10,
+    "width": 2,
+    "height": 1
+  },
+  {
+    "id": "752b61dc5a5951e0",
+    "type": "ui_spacer",
+    "z": "e7f76f7edeea9578",
+    "name": "spacer",
+    "group": "456ae826543353aa",
+    "order": 12,
+    "width": 2,
+    "height": 1
+  },
+  {
+    "id": "cc7877d654cbec39",
+    "type": "ui_spacer",
+    "z": "e7f76f7edeea9578",
+    "name": "spacer",
+    "group": "456ae826543353aa",
+    "order": 14,
+    "width": 2,
+    "height": 1
+  },
+  {
+    "id": "e2ef2fcbb34d1529",
+    "type": "ui_spacer",
+    "z": "e7f76f7edeea9578",
+    "name": "spacer",
+    "group": "456ae826543353aa",
+    "order": 16,
+    "width": 2,
+    "height": 1
+  },
+  {
+    "id": "4e3f02fb2e9b10ee",
+    "type": "ui_spacer",
+    "z": "e7f76f7edeea9578",
+    "name": "spacer",
+    "group": "456ae826543353aa",
+    "order": 17,
+    "width": 1,
+    "height": 1
+  },
+  {
+    "id": "09a25c3459b681e9",
+    "type": "ui_spacer",
+    "z": "e7f76f7edeea9578",
+    "name": "spacer",
+    "group": "456ae826543353aa",
+    "order": 21,
+    "width": 1,
+    "height": 1
+  },
+  {
+    "id": "3ef4f89c6241bd90",
+    "type": "ui_spacer",
+    "z": "e7f76f7edeea9578",
+    "name": "spacer",
+    "group": "456ae826543353aa",
+    "order": 22,
+    "width": 2,
+    "height": 1
+  },
+  {
+    "id": "d2844b4ea2c5b9fd",
+    "type": "ui_spacer",
+    "z": "e7f76f7edeea9578",
+    "name": "spacer",
+    "group": "456ae826543353aa",
+    "order": 24,
+    "width": 2,
+    "height": 1
+  },
+  {
+    "id": "456ae826543353aa",
+    "type": "ui_group",
+    "name": "Camera Controls",
+    "tab": "260fd5d5a9d20196",
+    "order": 1,
+    "disp": true,
+    "width": "5",
+    "collapse": false,
+    "className": ""
+  },
+  {
+    "id": "8e4e89ea.83e47",
+    "type": "mqtt-broker",
+    "name": "mqtt server",
+    "broker": "",
+    "port": "1883",
+    "clientid": "",
+    "autoConnect": true,
+    "usetls": false,
+    "protocolVersion": "4",
+    "keepalive": "60",
+    "cleansession": true,
+    "birthTopic": "",
+    "birthQos": "0",
+    "birthPayload": "",
+    "birthMsg": {},
+    "closeTopic": "",
+    "closeQos": "0",
+    "closePayload": "",
+    "closeMsg": {},
+    "willTopic": "",
+    "willQos": "0",
+    "willPayload": "",
+    "willMsg": {},
+    "userProps": "",
+    "sessionExpiry": ""
+  },
+  {
+    "id": "260fd5d5a9d20196",
+    "type": "ui_tab",
+    "name": "ROVER",
+    "icon": "dashboard",
+    "disabled": false,
+    "hidden": false
+  }
+]
