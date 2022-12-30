@@ -53,8 +53,8 @@ I have not had much success with controlling the jitter on the servos.
 I used a variety of libraris to experiment with controlling the jitter.
 My idea of electricity and PWM is very basic. So the controls for the camera servos ae not very good.
 
-![top](../images/pirover_top.jpeg)
-![front](../images/pirover_front.jpeg)
+![top](images/pirover_top.jpeg)
+![front](images/pirover_front.jpeg)
 
 #### Node-red mobile interface
-![node-red](../images/node-red_interface.jpeg)
+![node-red](images/node-red_interface.jpeg)
